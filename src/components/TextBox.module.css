@@ -1,0 +1,47 @@
+.selectedChar {
+  background-color: yellow;
+  /* padding: 1px; */
+  /* margin: 1px; */
+  border-style: solid;
+  border-width: 1px;
+  /* text-decoration: underline; */
+}
+
+.wrongChar {
+  border-style: solid;
+  border-width: 1px;
+  animation-name: animation;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+  background-color: yellow;
+}
+
+.pre {
+  color: grey;
+}
+
+@-webkit-keyframes animation {
+  0% {
+    background-color: yellow;
+  }
+  20% {
+    background-color: red;
+  }
+  100.0% {
+    background-color: yellow;
+  }
+}
+
+@keyframes animation {
+  0% {
+    background-color: yellow;
+  }
+  20% {
+    background-color: red;
+  }
+  100.0% {
+    background-color: yellow;
+  }
+}

@@ -1,0 +1,21 @@
+.myColumn {
+  border: dashed 2px red;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.typeBox {
+  background-color: #f9f7e0;
+  width: 550px;
+  margin: auto;
+  font-family: monospace;
+  /* border: solid 2px #bab797; */
+}
+
+.typeWrapper {
+  width: 550px;
+  margin: auto;
+  z-index: 5;
+}
