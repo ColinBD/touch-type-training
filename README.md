@@ -1,6 +1,6 @@
 # Introduction
 
-Touch type trainer is a work-in-progress app to help users improve their typing skills.
+Touch Type Trainer is a work-in-progress app to help users improve their typing skills.
 
 The user journey will look as follows: 
 1. A user sees some basic touch typing instructions
