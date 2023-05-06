@@ -10,6 +10,7 @@ class Typer extends Component {
   state = {
     iteration: 0, //towards props.quantity
     pos: 0,
+    quantity: 0,
     quote: "Main text entry box. Will show the quote here.",
     quotes: {
       movieQuotes: ["You're gonna need a bigger boat.", "Here's looking at you, kid.", "Houston, we have a problem.", "There's no crying in baseball!", "You can't handle the truth!"],
@@ -68,7 +69,6 @@ class Typer extends Component {
           <TextBox
             str={this.state.str}
             quote={this.state.quote}
-            quotes={this.state.quotes}
             prevKey={this.state.prevKey}
           />
           <input
@@ -119,8 +119,8 @@ class Typer extends Component {
     console.log(iteration, this.props.settings.quantity)
     //check if all iterations are done
       //if so we move to the new stage
-    if (iteration >= this.props.settings.quantity) {
-      alert('all done!')
+    if (iteration >= this.state.quantity) {
+      alert('You have completed the typing test. COMING SOON... Your results will now be displayed')
     } else {console.log(iteration, this.props.settings.quantity)}
     //set new quote
        //if not, we set a new quote

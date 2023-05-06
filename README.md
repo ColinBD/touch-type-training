@@ -20,6 +20,9 @@ Then...
 4. Implement the functionality to populate the results page. Perhaps the user should see a bar graph of error rate, from highests error rate on left to lowest on right.)
 5. Think about how to implement a training exercise based upon error rate.  
 
+## Issues
+1. After the first quote is completed, all subsequent typing triggers 'wrong key' and so the red box flashes up, even when the character was typed correctly and the box moves to the next position in the string.  
+
 # Bootstrapped with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
