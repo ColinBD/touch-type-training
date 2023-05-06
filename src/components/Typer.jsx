@@ -8,7 +8,7 @@ import TextBox from "./TextBox";
 // TO DO: Replace hard coded quotes with dynamic propulation of quotes from open APIs 
 class Typer extends Component {
   state = {
-    iteration: 1, //towards props.quantity
+    iteration: 0, //towards props.quantity
     pos: 0,
     quote: "Main text entry box. Will show the quote here.",
     quotes: {
@@ -24,7 +24,7 @@ class Typer extends Component {
   componentDidMount() {
     console.log('selected text type',this.props.settings.selectedTextType)
     // set the number of quotes to be typed before we move to the analysis stage
-    let quantity = 0;
+    let quantity; //to assign directly after
     if (this.props.settings.quantity === "Small") {
       quantity = 2;
     } else if (this.props.settings.quantity === "Medium") {
@@ -32,17 +32,16 @@ class Typer extends Component {
     } else {
       quantity = 5;
     };
-    let thequote = this.state.quotes.movieQuotes[0] 
     let quote = "";
     //get a quote - then save it so the state as 'quote'
     if (this.props.settings.selectedTextType === 'Design') {
-      quote = this.state.quotes.designQuotes[0];
+      quote = this.state.quotes.designQuotes[this.state.iteration];
     } else if (this.props.settings.selectedTextType === 'Movies') {
-      quote = this.state.quotes.movieQuotes[0];
+      quote = this.state.quotes.movieQuotes[this.state.iteration];
     } else if (this.props.settings.selectedTextType === 'News') {
-      quote = this.state.quotes.newsQuotes[0];
+      quote = this.state.quotes.newsQuotes[this.state.iteration];
     } else if (this.props.settings.selectedTextType === 'Harry Potter') {
-      quote = this.state.quotes.harryPotterQuotes[0];
+      quote = this.state.quotes.harryPotterQuotes[this.state.iteration];
     } else {
       console.log("couldn't determin quote - something has gone wrong!")
     };
@@ -50,7 +49,7 @@ class Typer extends Component {
     let str = {
       pre: "",
       curr: quote.substring(0, 1),
-      post: quote.substring(1, thequote.length)
+      post: quote.substring(1, quote.length)
     };
 
     //set an event listener for key presses
@@ -63,7 +62,7 @@ class Typer extends Component {
     return (
       <React.Fragment>
         <div className={styles.typeWrapper}>
-          <span>1 of {this.state.quantity}</span>
+          <span>{this.state.iteration + 1} of {this.state.quantity}</span>
         </div>
         <div className={styles.typeBox}>
           <TextBox
@@ -107,21 +106,25 @@ class Typer extends Component {
     } else if (code === 16 || code === 20) {
       //shift or caps so ignore
     } else {
-      console.log("wrong");
+      console.log(`wrong - expecting: ${this.state.quote} - assuming I'm here: ${this.state.pos}`);
       //store the wrong keypress
       this.setState({ prevKey: "wrong" });
     }
   };
 
   quoteComplete = () => {
-    alert('all done!');
     let iteration = this.state.iteration + 1;
-    this.setState({ iteration })
-    console.log(this.state.iteration)
+    this.setState({ iteration, pos: 0 })
+    console.log("quote complete")
+    console.log(iteration, this.props.settings.quantity)
     //check if all iterations are done
       //if so we move to the new stage
+    if (iteration >= this.props.settings.quantity) {
+      alert('all done!')
+    } else {console.log(iteration, this.props.settings.quantity)}
     //set new quote
        //if not, we set a new quote
+       this.componentDidMount()
   }
 }
 
