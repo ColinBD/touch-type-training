@@ -8,7 +8,7 @@ import TextBox from "./TextBox";
 // TO DO: Replace hard coded quotes with dynamic propulation of quotes from open APIs 
 class Typer extends Component {
   state = {
-    iteration: 0, //towards props.quantity
+    //iteration: 0, 
     pos: 0,
     quantity: 0,
     quote: "Main text entry box. Will show the quote here.",
@@ -18,6 +18,7 @@ class Typer extends Component {
       harryPotterQuotes: ["Yer a wizard Harry.","Ah, music. A magic beyond all we do here!","The truth. It is a beautiful and terrible thing, and should therefore be treated with great caution.","It takes a great deal of bravery to stand up to our enemies, but just as much to stand up to our friends.","It does not do well to dwell on dreams and forget to live."],
       designQuotes:["Have no fear of perfection - you will never reach it.","Design is intelligence made visible.","Everything is designed. Few things are designed well.","Design adds value faster than it adds costs.","Make it simple, but significant."]
     },
+    iteration: 0,
     str: {},
     prevKey: "right"
   };
@@ -27,25 +28,16 @@ class Typer extends Component {
     // set the number of quotes to be typed before we move to the analysis stage
     let quantity; //to assign directly after
     if (this.props.settings.quantity === "Small") {
-      quantity = 2;
+      quantity = 1;
     } else if (this.props.settings.quantity === "Medium") {
       quantity = 3;
     } else {
       quantity = 5;
     };
-    let quote = "";
-    //get a quote - then save it so the state as 'quote'
-    if (this.props.settings.selectedTextType === 'Design') {
-      quote = this.state.quotes.designQuotes[this.state.iteration];
-    } else if (this.props.settings.selectedTextType === 'Movies') {
-      quote = this.state.quotes.movieQuotes[this.state.iteration];
-    } else if (this.props.settings.selectedTextType === 'News') {
-      quote = this.state.quotes.newsQuotes[this.state.iteration];
-    } else if (this.props.settings.selectedTextType === 'Harry Potter') {
-      quote = this.state.quotes.harryPotterQuotes[this.state.iteration];
-    } else {
-      console.log("couldn't determin quote - something has gone wrong!")
-    };
+
+    //CALL GETQUOTE
+    console.log(`iteration: ${this.state.iteration}`)
+    let quote = this.getQuote(this.state.iteration, this.props.settings.selectedTextType)
     //sort the quote
     let str = {
       pre: "",
@@ -106,7 +98,7 @@ class Typer extends Component {
     } else if (code === 16 || code === 20) {
       //shift or caps so ignore
     } else {
-      console.log(`wrong - expecting: ${this.state.quote} - assuming I'm here: ${this.state.pos}`);
+      console.log(`wrong - expecting: ${this.state.quote.charAt(this.state.pos)} - assuming I'm here: ${this.state.pos}`);
       //store the wrong keypress
       this.setState({ prevKey: "wrong" });
     }
@@ -114,17 +106,44 @@ class Typer extends Component {
 
   quoteComplete = () => {
     let iteration = this.state.iteration + 1;
-    this.setState({ iteration, pos: 0 })
     console.log("quote complete")
-    console.log(iteration, this.props.settings.quantity)
     //check if all iterations are done
       //if so we move to the new stage
     if (iteration >= this.state.quantity) {
-      alert('You have completed the typing test. COMING SOON... Your results will now be displayed')
-    } else {console.log(iteration, this.props.settings.quantity)}
-    //set new quote
-       //if not, we set a new quote
-       this.componentDidMount()
+      this.props.onQuotesComplete("scores object goes here")
+    } else {
+      //setup new quote by incrementing 'increment', choosing a new quote and re-rendering the component
+      let quote = this.getQuote(iteration, this.props.settings.selectedTextType)
+      console.log(`just fetched quote: ${quote}`)
+      //sort the quote
+      let str = {
+        pre: "",
+        curr: quote.substring(0, 1),
+        post: quote.substring(1, quote.length)
+      };
+      this.setState({
+        quote,
+        str,
+        pos: 0
+      })
+    }
+    
+  }
+
+  getQuote = (iteration, selectedTxt) => {
+    let quote = "";
+    //get a quote - then save it so the state as 'quote'
+    if (selectedTxt === 'Design') {
+      quote = this.state.quotes.designQuotes[iteration];
+    } else if (selectedTxt === 'Movies') {
+      quote = this.state.quotes.movieQuotes[iteration];
+    } else if (selectedTxt === 'News') {
+      quote = this.state.quotes.newsQuotes[iteration];
+    } else if (selectedTxt === 'Harry Potter') {
+      quote = this.state.quotes.harryPotterQuotes[iteration];
+    };
+    console.log(`returning quote: ${quote}`)
+    return quote;
   }
 }
 

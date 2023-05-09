@@ -77,7 +77,7 @@ class App extends Component {
 
   checkStage() {
     if (this.state.stage === 2) {
-      return <Typer settings={this.state.settings} />;
+      return <Typer settings={this.state.settings} onQuotesComplete={this.handleQuotesComplete}/>;
     } else if (this.state.stage === 3) {
       return <Stats />;
     } else if (this.state.stage === 4) {
@@ -96,6 +96,13 @@ class App extends Component {
       stage: 2
     });
   };
+
+  handleQuotesComplete = (scores) => {
+    //save the scores here as we need to pass them to the stats page
+    this.setState({
+      stage: 3
+    })
+  }  
 }
 
 export default App;
