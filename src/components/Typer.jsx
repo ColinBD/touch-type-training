@@ -20,7 +20,8 @@ class Typer extends Component {
     },
     iteration: 0,
     str: {},
-    prevKey: "right"
+    prevKey: "right",
+    stats: {a:[0,0], b:[0,0], c:[0,0],d:[0,0],e:[0,0],f:[0,0],g:[0,0],h:[0,0],i:[0,0],j:[0,0],k:[0,0],l:[0,0],m:[0,0],n:[0,0],o:[0,0],p:[0,0],q:[0,0],r:[0,0],s:[0,0],t:[0,0],u:[0,0],v:[0,0],w:[0,0],x:[0,0],y:[0,0],z:[0,0]}
   };
 
   componentDidMount() {
@@ -77,9 +78,12 @@ class Typer extends Component {
   handleKeyPress = event => {
     //evaluate current pos - was the right key pressed?
 
-    //only consider alpha keys or spacebar
+    //only consider alpha keys or spacebar, and make any caps lower-case for easier comparison
     const code = event.keyCode;
-    if (event.key === this.state.quote.charAt(this.state.pos)) {
+    const char = this.state.quote.charAt(this.state.pos);
+    const lowerChar = char.toLowerCase();
+    const stats = this.state.stats;
+    if (event.key === char) {
       console.log("Correct!");
       const newPos = this.state.pos + 1;
       let str = {
@@ -87,10 +91,19 @@ class Typer extends Component {
         curr: this.state.quote.substring(newPos, newPos + 1),
         post: this.state.quote.substring(newPos + 1, this.state.quote.length)
       };
+      //update the Stats object. Note, first item in arrys os for 'correct', second for 'wrong'. ie. [0] = correct; [1] = wrong
+      
+      // only record if the character is a letter
+      if (lowerChar.match(/[a-z]/i)) {
+        //console.log(`going to add ${lowerChar} to stats`)
+        stats[lowerChar][0] = stats[lowerChar][0] + 1
+      }
+      //schedule set state for all the vars we need to update
       this.setState({
         str,
         pos: newPos,
-        prevKey: "right"
+        prevKey: "right",
+        stats
       });
       //check that 'newPos' is not at the end of the string
       //if so run an onEnd function
@@ -98,10 +111,16 @@ class Typer extends Component {
     } else if (code === 16 || code === 20) {
       //shift or caps so ignore
     } else {
-      console.log(`wrong - expecting: ${this.state.quote.charAt(this.state.pos)} - assuming I'm here: ${this.state.pos}`);
+      console.log(`wrong - expecting: ${char} - assuming I'm here: ${this.state.pos}`);
+      //update the Stats object. Note, first item in arrys os for 'correct', second for 'wrong'. ie. [0] = correct; [1] = wrong
+      // only record if the character is a letter
+      if (lowerChar.match(/[a-z]/i)) {
+        stats[lowerChar][1] = stats[lowerChar][1] + 1
+      }
       //store the wrong keypress
-      this.setState({ prevKey: "wrong" });
+      this.setState({ prevKey: "wrong", stats });
     }
+    console.log(this.state.stats)
   };
 
   quoteComplete = () => {
