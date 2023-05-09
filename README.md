@@ -13,15 +13,13 @@ The user journey should be as follows:
 # Project status
 The project is at an early stage. Thus far, the first three steps listed above have been implemented. Imediate next stages in the build are as follows:
 1. Retreive quotes from open APIs (to replace the hard-coded quotes presently used).
-2. Complete quote iteration so that after the last quote, the results page is presented.
-
-Then...
-3. Check the status of error logging (we should be capturing the number of correct key presses and incorrect key presses for each key over the set of quotes).
-4. Implement the functionality to populate the results page. Perhaps the user should see a bar graph of error rate, from highests error rate on left to lowest on right.)
+2. Ensure error logging happens: make an object with a key for each typeable character, and an array as the property with the first item logging number of correct key presses and the second item loggin incorrect key presses  - start with alpha characters incase other characters cause issues when used as keys withinJS objects.
+3. Ensure the keyStrokes logging object persists correctly between quotes, and gets passed correctly when all quotes are complete. 
+4. Implement the functionality to populate the Stats page. Perhaps the user should see a bar graph of error rate, from highests error rate on left to lowest on right.)Also display: general accuracy percentage; words per minute; state target letters for next exercise; button to move onto the training exercise.
 5. Think about how to implement a training exercise based upon error rate.  
 
 ## Issues
-1. After the first quote is completed, all subsequent typing triggers 'wrong key' and so the red box flashes up, even when the character was typed correctly and the box moves to the next position in the string.  
+The 'paper' can appear to sit above the typewriter, disconnected from it. We need to calculate the paper size better. 
 
 # Bootstrapped with Create React App
 

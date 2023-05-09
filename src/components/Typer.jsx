@@ -124,7 +124,8 @@ class Typer extends Component {
       this.setState({
         quote,
         str,
-        pos: 0
+        pos: 0,
+        iteration
       })
     }
     
