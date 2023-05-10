@@ -21,7 +21,8 @@ class App extends Component {
     settings: {
       selectedTextType: "",
       quantity: ""
-    }
+    },
+    stats: {}
   };
 
   componentDidMount() {
@@ -79,7 +80,7 @@ class App extends Component {
     if (this.state.stage === 2) {
       return <Typer settings={this.state.settings} onQuotesComplete={this.handleQuotesComplete}/>;
     } else if (this.state.stage === 3) {
-      return <Stats />;
+      return <Stats stats={this.state.stats}/>;
     } else if (this.state.stage === 4) {
       return <Exercise />;
     } else {
@@ -97,10 +98,11 @@ class App extends Component {
     });
   };
 
-  handleQuotesComplete = (scores) => {
+  handleQuotesComplete = (stats) => {
     //save the scores here as we need to pass them to the stats page
     this.setState({
-      stage: 3
+      stage: 3,
+      stats
     })
   }  
 }

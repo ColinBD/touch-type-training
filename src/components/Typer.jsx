@@ -120,7 +120,7 @@ class Typer extends Component {
       //store the wrong keypress
       this.setState({ prevKey: "wrong", stats });
     }
-    console.log(this.state.stats)
+    //console.log(this.state.stats)
   };
 
   quoteComplete = () => {
@@ -129,7 +129,7 @@ class Typer extends Component {
     //check if all iterations are done
       //if so we move to the new stage
     if (iteration >= this.state.quantity) {
-      this.props.onQuotesComplete("scores object goes here")
+      this.props.onQuotesComplete(this.state.stats)
     } else {
       //setup new quote by incrementing 'increment', choosing a new quote and re-rendering the component
       let quote = this.getQuote(iteration, this.props.settings.selectedTextType)
