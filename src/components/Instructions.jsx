@@ -23,7 +23,7 @@ class Instructions extends Component {
         <Container className={styles.myContainer}>
           <Row className={`justify-content-sm-center ${styles.myRow}`}>
           <Col xs="auto">
-              <p>What do you want to type?</p>
+              <p style={{fontWeight: "500", fontSize: "x-large"}}>1. Choose a text topic</p>
             </Col>
           </Row>
           <Row className={`justify-content-sm-center ${styles.myRow}`}>
@@ -64,7 +64,7 @@ class Instructions extends Component {
             }`}
           >
             <Col xs="auto">
-              <p>How much typing?</p>
+              <p style={{fontWeight: "500", fontSize: "x-large", marginTop: "3rem"}}>2. How much typing do you want to do?</p>
             </Col>
           </Row>
           <Row className={`justify-content-sm-center ${styles.myRow}`}>

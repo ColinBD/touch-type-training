@@ -95,7 +95,7 @@ class Typer extends Component {
       
       // only record if the character is a letter
       if (lowerChar.match(/[a-z]/i)) {
-        //console.log(`going to add ${lowerChar} to stats`)
+        //increment character press score
         stats[lowerChar][0] = stats[lowerChar][0] + 1
       }
       //schedule set state for all the vars we need to update

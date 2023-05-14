@@ -11,12 +11,11 @@ The user journey should be as follows:
 6. The user is then invited to undertake training, which consists of more text to type, but this text is auto-generated based on the user's error profile.
 
 # Project status
-The project is at an early stage. Thus far, the first three steps listed above have been implemented. Imediate next stages in the build are as follows:
+The project is a work-in-progress. The first five stages have been (at least partially) completed, but stage six is yet to be implemented. Immediate next steps are as follows:
 1. Retreive quotes from open APIs (to replace the hard-coded quotes presently used).
-2. Ensure error logging happens: make an object with a key for each typeable character, and an array as the property with the first item logging number of correct key presses and the second item loggin incorrect key presses  - start with alpha characters incase other characters cause issues when used as keys withinJS objects.
-3. Ensure the keyStrokes logging object persists correctly between quotes, and gets passed correctly when all quotes are complete. 
-4. Implement the functionality to populate the Stats page. Perhaps the user should see a bar graph of error rate, from highests error rate on left to lowest on right.)Also display: general accuracy percentage; words per minute; state target letters for next exercise; button to move onto the training exercise.
-5. Think about how to implement a training exercise based upon error rate.  
+2. Improve stats page: if the user made no mistakes present a congratulations message. Add a message 'you made the following mistakes...'. 
+3. Add instructions about touch typing prior to the setup dialog.
+4. Think about how to implement a training exercise based upon error rate.  
 
 ## Issues
 The 'paper' can appear to sit above the typewriter, disconnected from it. We need to calculate the paper size better. 

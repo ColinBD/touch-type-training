@@ -1,0 +1,12 @@
+.resultsBox {
+    background-color: #ffffff;
+    max-width: 90%;
+    height: 90%;
+    margin: auto;
+    padding: 100px;
+    text-align: center;
+    font-size: large;
+    list-style-type: none;
+    /* font-family: monospace; */
+    /* border: solid 2px #bab797; */
+  }
