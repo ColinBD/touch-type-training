@@ -26,19 +26,18 @@ class Typer extends Component {
 
   componentDidMount() {
     console.log('selected text type',this.props.settings.selectedTextType)
+    console.log(this.props.settings.quotes)
     // set the number of quotes to be typed before we move to the analysis stage
     let quantity; //to assign directly after
     if (this.props.settings.quantity === "Small") {
-      quantity = 1;
-    } else if (this.props.settings.quantity === "Medium") {
       quantity = 3;
+    } else if (this.props.settings.quantity === "Medium") {
+      quantity = 10;
     } else {
-      quantity = 5;
+      quantity = 30;
     };
 
-    //CALL GETQUOTE
-    console.log(`iteration: ${this.state.iteration}`)
-    let quote = this.getQuote(this.state.iteration, this.props.settings.selectedTextType)
+    let quote = this.props.settings.quotes[this.state.iteration]
     //sort the quote
     let str = {
       pre: "",
@@ -48,6 +47,7 @@ class Typer extends Component {
 
     //set an event listener for key presses
     document.addEventListener("keydown", this.handleKeyPress.bind(this));
+
     //update state
     this.setState({ quote, quantity, str });
   }
@@ -132,7 +132,7 @@ class Typer extends Component {
       this.props.onQuotesComplete(this.state.stats)
     } else {
       //setup new quote by incrementing 'increment', choosing a new quote and re-rendering the component
-      let quote = this.getQuote(iteration, this.props.settings.selectedTextType)
+      let quote = this.props.settings.quotes[iteration]
       console.log(`just fetched quote: ${quote}`)
       //sort the quote
       let str = {
@@ -150,21 +150,21 @@ class Typer extends Component {
     
   }
 
-  getQuote = (iteration, selectedTxt) => {
-    let quote = "";
-    //get a quote - then save it so the state as 'quote'
-    if (selectedTxt === 'Design') {
-      quote = this.state.quotes.designQuotes[iteration];
-    } else if (selectedTxt === 'Movies') {
-      quote = this.state.quotes.movieQuotes[iteration];
-    } else if (selectedTxt === 'News') {
-      quote = this.state.quotes.newsQuotes[iteration];
-    } else if (selectedTxt === 'Harry Potter') {
-      quote = this.state.quotes.harryPotterQuotes[iteration];
-    };
-    console.log(`returning quote: ${quote}`)
-    return quote;
-  }
+  // getQuote = (iteration, selectedTxt) => {
+  //   let quote = "";
+  //   //get a quote - then save it so the state as 'quote'
+  //   if (selectedTxt === 'Design') {
+  //     quote = this.state.quotes.designQuotes[iteration];
+  //   } else if (selectedTxt === 'Movies') {
+  //     quote = this.state.quotes.movieQuotes[iteration];
+  //   } else if (selectedTxt === 'News') {
+  //     quote = this.state.quotes.newsQuotes[iteration];
+  //   } else if (selectedTxt === 'Harry Potter') {
+  //     quote = this.state.quotes.harryPotterQuotes[iteration];
+  //   };
+  //   console.log(`returning quote: ${quote}`)
+  //   return quote;
+  // }
 }
 
 export default Typer;

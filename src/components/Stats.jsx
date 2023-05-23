@@ -10,24 +10,24 @@ class Stats extends Component {
   };
 
   componentDidMount() {
-    //console.log('props: ', this.props.stats)
     //pop out characters that have not been attempted at all.
     const characters = this.props.stats;
     let sortedStats = [];
     for (var letter in characters) {
-        if (characters[letter][1] !== 0) {
+      //use characters[letter][1] below if you only want to keep chracters where mistakes occured
+        if (characters[letter][0] !== 0) {
           let errorRate = Math.round(characters[letter][1] / (characters[letter][0] + characters[letter][1]) * 100)
           let newVal = characters[letter];
           newVal.push(errorRate)
           sortedStats.push([letter, newVal]);
         }  
     }
-
+    //order the letters from most mistakes to least
     sortedStats.sort(function(a, b) {
         return b[1][2] - a[1][2];
     });  
-    //console.log('here comes the sorted stats...')
-    //console.log(sortedStats)
+    console.log('here comes the sorted stats...')
+    console.log(sortedStats)
     this.setState({
       sortedStats
     })

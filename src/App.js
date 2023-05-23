@@ -6,13 +6,7 @@ import Typer from "./components/Typer";
 import Stats from "./components/Stats";
 import Exercise from "./components/Exercise";
 import Fan from "./images/Fan1.png";
-
-{
-  /*<link
-  href="https://fonts.googleapis.com/css?family=Muli&display=swap"
-  rel="stylesheet"
-/>; */
-}
+import { movieQuotes, designQuotes, harryPotterQuotes }  from "./components/quotes.js";
 
 class App extends Component {
   state = {
@@ -20,7 +14,8 @@ class App extends Component {
     trainingPhase: false,
     settings: {
       selectedTextType: "",
-      quantity: ""
+      quantity: "",
+      quotes: []
     },
     stats: {}
   };
@@ -31,6 +26,9 @@ class App extends Component {
 
     //recalculate positions when window is resized
     window.addEventListener("resize", this.positionFanAndSteam);
+    // console.log('movie quotes', movieQuotes)
+    // console.log('designQuotes', designQuotes)
+    // console.log('harryPotterQuotes', harryPotterQuotes)
   }
 
   render() {
@@ -89,10 +87,19 @@ class App extends Component {
   }
 
   handleSettings = (txt, quant) => {
+    let quotes = [];
+    if (txt == 'Design') {
+      quotes = this.shuffle(designQuotes);
+    } else if (txt == 'Movies') {
+      quotes = this.shuffle(movieQuotes);
+    } else {
+      quotes = this.shuffle(harryPotterQuotes);
+    }
     this.setState({
       settings: {
         selectedTextType: txt,
-        quantity: quant
+        quantity: quant,
+        quotes
       },
       stage: 2
     });
@@ -104,7 +111,16 @@ class App extends Component {
       stage: 3,
       stats
     })
-  }  
+  }
+
+  //Fisher-Yates shuffle algorithm
+  shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array
+  }
 }
 
 export default App;
