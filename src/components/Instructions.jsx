@@ -21,6 +21,11 @@ class Instructions extends Component {
     return (
       <React.Fragment>
         <Container className={styles.myContainer}>
+        <Row className={`justify-content-sm-center ${styles.myRow}`}>
+          <Col xs="auto">
+              <p style={{fontWeight: "500", fontSize: "large", marginBottom: "50px"}}>So, you think you can touch type? Okay, let's check! Choose from the two options below to start.</p>
+            </Col>
+          </Row>
           <Row className={`justify-content-sm-center ${styles.myRow}`}>
           <Col xs="auto">
               <p style={{fontWeight: "500", fontSize: "x-large"}}>1. Choose a text topic</p>
