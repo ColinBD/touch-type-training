@@ -26,9 +26,9 @@ class App extends Component {
 
     //recalculate positions when window is resized
     window.addEventListener("resize", this.positionFanAndSteam);
-    // console.log('movie quotes', movieQuotes)
-    // console.log('designQuotes', designQuotes)
-    // console.log('harryPotterQuotes', harryPotterQuotes)
+    //console.log('movie quotes', movieQuotes.length)
+    //console.log('designQuotes', designQuotes)
+    console.log('harryPotterQuotes', harryPotterQuotes)
   }
 
   render() {

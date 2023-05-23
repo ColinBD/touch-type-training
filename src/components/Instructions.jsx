@@ -43,13 +43,6 @@ class Instructions extends Component {
                 Movie
               </Button>
               <Button
-                id="News"
-                className={this.getBtnTxtTypeClassName("News")}
-                onClick={this.setBtnClassName}
-              >
-                News
-              </Button>
-              <Button
                 id="Harry Potter"
                 className={this.getBtnTxtTypeClassName("Harry Potter")}
                 onClick={this.setBtnClassName}
