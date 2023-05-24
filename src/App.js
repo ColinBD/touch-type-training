@@ -28,7 +28,7 @@ class App extends Component {
     window.addEventListener("resize", this.positionFanAndSteam);
     //console.log('movie quotes', movieQuotes.length)
     //console.log('designQuotes', designQuotes)
-    console.log('harryPotterQuotes', harryPotterQuotes)
+    //console.log('harryPotterQuotes', harryPotterQuotes)
   }
 
   render() {

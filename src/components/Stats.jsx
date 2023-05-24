@@ -3,16 +3,19 @@ import styles from "./Stats.module.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import NoErrors from "./NoErrors";
 
 class Stats extends Component {
   state = {
-    sortedStats: []
+    sortedStats: [],
+    errorFound: false
   };
 
   componentDidMount() {
     //pop out characters that have not been attempted at all.
     const characters = this.props.stats;
     let sortedStats = [];
+    let errorFound = false;
     for (var letter in characters) {
       //use characters[letter][1] below if you only want to keep chracters where mistakes occured
         if (characters[letter][0] !== 0) {
@@ -21,20 +24,26 @@ class Stats extends Component {
           newVal.push(errorRate)
           sortedStats.push([letter, newVal]);
         }  
+        if (characters[letter][1] !== 0) {
+          errorFound = true;
+        }
     }
     //order the letters from most mistakes to least
     sortedStats.sort(function(a, b) {
         return b[1][2] - a[1][2];
     });  
-    console.log('here comes the sorted stats...')
-    console.log(sortedStats)
+    // console.log('here comes the sorted stats...')
+    // console.log(sortedStats)
+    console.log('error found? ', errorFound)
     this.setState({
-      sortedStats
+      sortedStats,
+      errorFound
     })
   }
 
   render() {
     const listItems = this.state.sortedStats.map((stat) => <li><span style={{fontWeight: "700", fontSize: "xx-large", marginRight: "20px"}}>{stat[0]}</span> {stat[1][2]}% error rate - {stat[1][0]} right, {stat[1][1]} wrong</li>);
+    //let message = <div>Hello world</div>
     return (
       <React.Fragment>
         <Container className={styles.myContainer}>
@@ -44,12 +53,8 @@ class Stats extends Component {
           </Col>
         </Row>
           <div className={styles.resultsBox}>
-            {listItems }
-          </div>
-        {/* <p>accuracy percentage</p>
-        <p>mistakes - graph of letter errors</p>
-        <p>Target letters: </p>
-        <p>Generate Exercise Button - hidden just now</p> */}
+            {!this.state.errorFound ? <NoErrors /> : listItems}
+          </div> 
       </ Container>
       </React.Fragment>
     );

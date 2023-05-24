@@ -12,14 +12,14 @@ The user journey should be as follows:
 
 # Project status
 The project is a work-in-progress. The first five stages have been (at least partially) completed, but stage six is yet to be implemented. Immediate next steps are as follows:
-1. Add movie and harry potter quotes to complement the design quotes.
-2. Improve stats page: if the user made no mistakes present a congratulations message. Add a message 'you made the following mistakes...'. Also add a graph of error rates.
+1. Improve stats page: Add a graph of error rates.
+2. Think about how to implement a training exercise based upon error rate.
 3. Add instructions about touch typing prior to the setup dialog.
-- Instructions > So, you think you can touch-type? You place your index fingers on the bumps on the F and J keys and type succesfully without looking down at your fingers? Okay, let's check!  
-4. Think about how to implement a training exercise based upon error rate.  
+4. Sort the CSS for various screen sizes (although we only expect this to be used on desktop).
 
 ## Issues
-The 'paper' can appear to sit above the typewriter, disconnected from it. We need to calculate the paper size better. 
+- The 'paper' can appear to sit above the typewriter, disconnected from it. We need to calculate the paper size better. 
+- Not mobile friendly
 
 # Bootstrapped with Create React App
 

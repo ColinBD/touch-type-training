@@ -12,12 +12,6 @@ class Typer extends Component {
     pos: 0,
     quantity: 0,
     quote: "Main text entry box. Will show the quote here.",
-    quotes: {
-      movieQuotes: ["You're gonna need a bigger boat.", "Here's looking at you, kid.", "Houston, we have a problem.", "There's no crying in baseball!", "You can't handle the truth!"],
-      newsQuotes: ["News is what somebody somewhere wants to suppress; all the rest is advertising.","Bad news isn't wine. It doesn't improve with age.","We cannot make good news out of bad practice.","When fake news is repeated, it becomes difficult for the public to discern what's real.","People everywhere confuse what they read in newspapers with news."],
-      harryPotterQuotes: ["Yer a wizard Harry.","Ah, music. A magic beyond all we do here!","The truth. It is a beautiful and terrible thing, and should therefore be treated with great caution.","It takes a great deal of bravery to stand up to our enemies, but just as much to stand up to our friends.","It does not do well to dwell on dreams and forget to live."],
-      designQuotes:["Have no fear of perfection - you will never reach it.","Design is intelligence made visible.","Everything is designed. Few things are designed well.","Design adds value faster than it adds costs.","Make it simple, but significant."]
-    },
     iteration: 0,
     str: {},
     prevKey: "right",
@@ -25,12 +19,10 @@ class Typer extends Component {
   };
 
   componentDidMount() {
-    console.log('selected text type',this.props.settings.selectedTextType)
-    console.log(this.props.settings.quotes)
     // set the number of quotes to be typed before we move to the analysis stage
     let quantity; //to assign directly after
     if (this.props.settings.quantity === "Small") {
-      quantity = 3;
+      quantity = 1;
     } else if (this.props.settings.quantity === "Medium") {
       quantity = 10;
     } else {
@@ -150,21 +142,6 @@ class Typer extends Component {
     
   }
 
-  // getQuote = (iteration, selectedTxt) => {
-  //   let quote = "";
-  //   //get a quote - then save it so the state as 'quote'
-  //   if (selectedTxt === 'Design') {
-  //     quote = this.state.quotes.designQuotes[iteration];
-  //   } else if (selectedTxt === 'Movies') {
-  //     quote = this.state.quotes.movieQuotes[iteration];
-  //   } else if (selectedTxt === 'News') {
-  //     quote = this.state.quotes.newsQuotes[iteration];
-  //   } else if (selectedTxt === 'Harry Potter') {
-  //     quote = this.state.quotes.harryPotterQuotes[iteration];
-  //   };
-  //   console.log(`returning quote: ${quote}`)
-  //   return quote;
-  // }
 }
 
 export default Typer;
