@@ -1,11 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 body {
-  background-image: url("./images/TypewriterBlue2.png");
+  background: url("./images/TypewriterBlue2.png") no-repeat center center fixed; 
+  background-size: auto 100%;
+  /* background-image: url("./images/TypewriterBlue2.png");
   background-size: auto 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center;
+  background-position: center; */
 }
 
 .App {
@@ -266,3 +268,9 @@ body {
     visibility: hidden;
   }
 }
+
+/* @media only screen and (max-width: 479px) {
+  body {
+    background:none;
+   }
+} */
